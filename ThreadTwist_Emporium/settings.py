@@ -29,7 +29,8 @@ SECRET_KEY = 'django-insecure-77gv&ey7yuyu(&dy2q2aqec!!!!wrm@@%#s13s!$hhw0g*i1)+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = ['https://thread-twist-emporium.onrender.com','https://*.127.0.0.1']
 
 
 # Application definition

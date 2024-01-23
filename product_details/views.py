@@ -4,7 +4,7 @@ from django.views import View
 from django.urls import reverse_lazy
 from django.views.generic import DetailView,CreateView
 from product_list.models import ClothingItem
-from review.models import Review, AverageRating
+from review.models import Review
 from review.forms import ReviewForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages

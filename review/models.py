@@ -23,19 +23,3 @@ class Review(models.Model):
         return f"{self.user} - {self.clothing_item.name} - {self.rating}"
 
 
-class AverageRating(models.Model):
-    clothing_item = models.ForeignKey(ClothingItem, on_delete=models.CASCADE, primary_key=True)
-    average_rating = models.FloatField(default=0)
-    total_reviews = models.IntegerField(default=0)
-
-    def update_average_rating(self):
-        reviews = self.clothing_item.reviews.all()
-        total_ratings = sum([review.rating for review in reviews])
-        if total_ratings > 0:
-            self.average_rating = total_ratings / len(reviews)
-            self.total_reviews = len(reviews)
-            self.save()
-        else:
-            self.average_rating = 0
-            self.total_reviews = 0
-            self.save()

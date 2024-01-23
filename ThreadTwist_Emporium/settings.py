@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import environ
+import dj_database_url
 env = environ.Env()
 environ.Env.read_env()
 
@@ -94,7 +95,12 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         # Feel free to alter this value to suit your needs.
+#         default='postgres://threadtwist_emporium_w8q9_user:l3a0CoCyEvf9KCpudhSOvJpKhb12pYx2@dpg-cmnlhlla73kc73av7qh0-a.oregon-postgres.render.com/threadtwist_emporium_w8q9',
+#     )
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

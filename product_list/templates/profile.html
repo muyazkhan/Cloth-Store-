@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="my-account">
+    <h2 class="text-center text-success">Welcome, {{ user.username }}!</h2>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
+
+                    <a class="nav-link" id="orders-nav" data-bs-toggle="" href="{% url 'update_profile' %}" role="tab">
+                      <i class="fa fa-shopping-bag"></i> Account Details
+                  </a>
+                    <a class="nav-link" href="{% url "logout" %}"><i class="fa fa-sign-out-alt"></i>Logout</a>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="tab-content">
+
+                        <form method="post" action="{% url 'update_profile' %}">
+                          <h2 class="text-center fw-bold text-primary">Update Your Account</h2>
+                          {% csrf_token %}
+                          {{ form| crispy}}
+                          <button class="btn btn-primary">Update Account</button>
+                      </form>
+                                <br><br>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+

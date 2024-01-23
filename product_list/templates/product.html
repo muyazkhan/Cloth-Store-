@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+<div class="col-md-12 p-2">
+  <h2 class="text-info text-center fw-bold">Product Filter </h2>
+  <form method="get" action="{% url 'product' %}" class="form-inline">
+    {% csrf_token %}
+    {{ filter|crispy }}
+    <button type="submit" class="btn btn-primary text-center">Apply Filters</button>
+  </form>
+</div>
+
+<!-- Filter Section End -->
+
+      <!-- Product List Start -->
+      <div class="col-lg-12 p-3">
+        <h1 class="text-danger text-center mt-2">Clothing Items</h1>
+
+        <!-- Product Filter Start -->
+        <div class="product-view-top">
+          <!-- Add your product filtering options here -->
+        </div>
+        <!-- Product Filter End -->
+
+        <div class="row">
+          {% for item in clothing_items %}
+            <div class="col-md-4">
+              <!-- Product Item Start -->
+              <div class="product-item">
+                <!-- Product Details Start -->
+                <div class="product-title">
+                  <a href="#">{{ item.name }}</a>
+                  <div class="ratting">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  </div>
+                </div>
+                <div class="product-image">
+                  <a href="product-detail.html">
+                    <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                  </a>
+                  <div class="product-action">
+                    <a href="{% url "add_to_cart" item.id %}"><i class="fa fa-cart-plus"></i></a>
+                    <a href="{% url "add_to_wishlist" item.id %}"><i class="fa fa-heart"></i></a>
+                  </div>
+                </div>
+                <div class="product-price">
+                  <h3><span>$</span>{{item.price}}</h3>
+                  <a class="btn" href="{% url "product_details" item.id %}"><i class="fa fa-shopping-cart"></i>View Details</a>
+                </div>
+                <!-- Product Details End -->
+              </div>
+              <!-- Product Item End -->
+            </div>
+          {% endfor %}
+        </div>
+
+        <!-- Pagination Start -->
+        {% if clothing_items.has_other_pages %}
+          <div class="col-md-12">
+            <nav aria-label="Page navigation example">
+              <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                  {% if clothing_items.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a class="page-link" href="?page={{ clothing_items.previous_page_number }}" tabindex="-1">Previous</a>
+                  {% endif %}
+                </li>
+                <span class="current">
+                  Page {{ clothing_items.number }} of {{ clothing_items.paginator.num_pages }}.
+                </span>
+                {% if clothing_items.has_next %}
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a href="?page={{ clothing_items.next_page_number }}">next</a>
+                    <a href="?page={{ clothing_items.paginator.num_pages }}">last &raquo;</a>
+                  </li>
+                {% endif %}
+              </ul>
+            </nav>
+          </div>
+        {% endif %}
+        <!-- Pagination End -->
+      </div>
+      <!-- Product List End -->
+    </div>
+  </div>
+
+
+  <div class="brand">
+    <div class="container-fluid">
+        <div class="brand-slider">
+            <div class="brand-item"><img src="{% static "img/brand-1.png" %}" alt=""></div>
+            <div class="brand-item"><img src="{% static "img/brand-2.png" %}" alt=""></div>
+            <div class="brand-item"><img src="{% static "img/brand-3.png" %}" alt=""></div>
+            <div class="brand-item"><img src="{% static "img/brand-4.png" %}" alt=""></div>
+            <div class="brand-item"><img src="{% static "img/brand-5.png" %}" alt=""></div>
+            <div class="brand-item"><img src="{% static "img/brand-6.png" %}" alt=""></div>
+        </div>
+    </div>
+</div>
+{% endblock %}

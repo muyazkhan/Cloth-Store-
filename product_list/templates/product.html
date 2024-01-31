@@ -18,18 +18,13 @@
       <div class="col-lg-12 p-3">
         <h1 class="text-danger text-center mt-2">Clothing Items</h1>
 
-        <!-- Product Filter Start -->
-        <div class="product-view-top">
-          <!-- Add your product filtering options here -->
-        </div>
-        <!-- Product Filter End -->
+      
 
-        <div class="row">
+        <div class="row mt-3">
           {% for item in clothing_items %}
-            <div class="col-md-4">
+            <div class="col-md-4 mt-3">
               <!-- Product Item Start -->
-              <div class="product-item">
-                <!-- Product Details Start -->
+              <div class="product-item p-3">
                 <div class="product-title">
                   <a href="#">{{ item.name }}</a>
                   <div class="ratting">
@@ -53,7 +48,6 @@
                   <h3><span>$</span>{{item.price}}</h3>
                   <a class="btn" href="{% url "product_details" item.id %}"><i class="fa fa-shopping-cart"></i>View Details</a>
                 </div>
-                <!-- Product Details End -->
               </div>
               <!-- Product Item End -->
             </div>

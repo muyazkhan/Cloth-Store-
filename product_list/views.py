@@ -196,7 +196,6 @@ class MyOrderDetails(LoginRequiredMixin, View):
         }
         return render(request, 'orderdetails.html', context)
 
-
 class AccountUpdateView(View):
     template_name = 'profile.html'
 

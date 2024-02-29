@@ -15,8 +15,14 @@
 {{fm.label_tag}}
 {{fm}} {{fm.errors|striptags}}
 {% endfor %}
-<br />
-<button class="btn btn-primary" type="submit">Submit</button>
+<div class="row">
+  <div class="col">
+      <button class="btn btn-primary" type="submit">Submit</button>
+  </div>
+  <div class="col">
+      <p>Need an account? <a href="{% url 'registration' %}">Sign up</a></p>
+  </div>
+</div>
 <br/>
 </form>
 {% endblock  %}
